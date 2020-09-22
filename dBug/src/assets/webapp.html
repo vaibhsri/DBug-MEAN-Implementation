@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="google-signin-client_id" content="645707287574-50188rma86ufjt96fh83p51esdsmg35a.apps.googleusercontent.com">
+  <title>DBug</title>
+  <base href="/"><!-- important for routing -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="assets/dBug.png">
+</head>
+<style>
+  body{
+    font-family: sans-serif;
+    width:100%;
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+    height:90vh;
+    justify-content: center;
+    overflow-x: hidden;
+    background-image: url("assets/background.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #logo{
+    background-image:url("assets/dBug.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    width:300px;
+    height:300px;
+  }
+  .button{
+    border:none !important;
+    background-color: transparent !important;
+  }
+  .signout{
+    border:transparent;
+    background-color: white;
+    color:grey;
+    width:120px;
+    height:40px;
+    box-shadow: 1px 1px 6px grey;
+    margin-top:10px;
+    cursor: pointer;
+  }
+  .signout:hover{
+    box-shadow: 1px 1px 6px lightblue;
+  }
+  a{
+    margin:20px;
+  }
+
+</style>
+<body>
+  <div id="logo"></div>
+  <button class="g-signin2 button" data-onsuccess="onSignIn">SIGN-IN</button>
+
+  <button class=" signout" onclick="signOut()">Sign out</button>
+
+  <div id="appbody"></div>
+  <a href="index.html">back to application</a>
+  <!-- primary angular app  -->
+  <!-- <app-root></app-root> -->
+
+</body>
+<!-- All JavaScript operations here, Do not use src/scripts.js! -->
+<script src="https://apis.google.com/js/platform.js" async defer></script> 
+  <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out. Local data removed');
+      localStorage.removeItem('name');
+      localStorage.removeItem('image');
+      localStorage.removeItem('mail');
+    });
+  }
+  function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    var appbody = document.getElementById("appbody");
+    var name="Hello " + profile.getName();
+    appbody.innerHTML+=name;
+    localStorage.setItem('name', profile.getName());
+    localStorage.setItem('image', profile.getImageUrl());
+    localStorage.setItem('mail', profile.getEmail());
+    console.log(localStorage.getItem('name'));
+    console.log(localStorage.getItem('image'));
+    //window.location = "webapp.html";
+  }
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBug | Welcome</title>
+    <!-- BULMA IMPORT -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    
+</head>
+<style>
+    /*need to make this responsive*/
+    #nav{
+        height: 10vh;
+        width: 100vw;
+        position: absolute;
+        top:0px;
+        display:flex;
+        align-items: center;
+        justify-content:space-evenly;
+    }
+    #logo{
+        width: 10vw;
+        height: 8vh;
+        background-image: url('assets/dBug.png');
+        background-size: contain;
+        background-repeat: no-repeat; 
+    }
+    img{
+        border-radius: 50%;
+        max-width:50px;
+    }
+</style>
+<body>
+    
+    <div id="nav">
+        <a routerLink="/" routerLinkActive="active"><div id="logo"></div></a>
+        <!-- sign in can only be carried out outside the app since it needs to call scripts -->
+        <a class="button" href="assets/webapp.html">sign in</a> Hello, {{name}} <img src="{{image}}" alt="profilephoto">
+    </div>
+<router-outlet></router-outlet>
+</body>
+</html>

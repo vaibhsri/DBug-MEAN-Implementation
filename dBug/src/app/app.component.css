@@ -1,0 +1,16 @@
+/* body{
+    background-color: rgb(167, 167, 200);
+    width:100vw;
+    height:90vh;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
+} */
+input{
+    width:20vw;
+}
+.textarea{
+    min-width:20vw !important;
+    max-width:20vw !important;
+}
